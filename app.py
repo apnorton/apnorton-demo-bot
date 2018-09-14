@@ -25,7 +25,7 @@ def webhook():
   return "ok", 200
 
 def random_uppercase(msg):
-  msg = msg.join(random.choice([c.upper(), c ]) for c in msg )
+  msg = ''.join(random.choice([c.upper(), c.lower()]) for c in msg)
   return msg
 
 def send_message(msg):

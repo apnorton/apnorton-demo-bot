@@ -15,10 +15,9 @@ botName = 'Mocking SpongeBob'
 @app.route('/', methods=['POST'])
 def webhook():
   data = request.get_json()
-  log('Recieved {}'.format(data))
+  log('Received {}'.format(data))
 
-  # We don't want to reply to ourselves!
-  if data['name'] != botName:
+  if (random.random() < 0.1 and if data['name'] != botName):
     msg = random_uppercase(data['text'])
     send_message(msg)
 

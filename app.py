@@ -18,8 +18,11 @@ def webhook():
   log('Received {}'.format(data))
 
   if random.random() < 0.1 and data['name'] != botName and data['text'] != '':
+    log('Sending reply')
     msg = random_uppercase(data['text'])
     send_message(msg)
+  else
+    log('Not sending reply')
 
   return "ok", 200
 

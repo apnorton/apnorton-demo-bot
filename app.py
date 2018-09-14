@@ -17,7 +17,7 @@ def webhook():
   data = request.get_json()
   log('Received {}'.format(data))
 
-  if (random.random() < 0.1 and if data['name'] != botName):
+  if random.random() < 0.1 and data['name'] != botName and data['text'] != '':
     msg = random_uppercase(data['text'])
     send_message(msg)
 

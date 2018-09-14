@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import time
+import random
 
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -18,10 +19,14 @@ def webhook():
 
   # We don't want to reply to ourselves!
   if data['name'] != botName:
-    msg = data['text']
+    msg = random_uppercase(data['text'])
     send_message(msg)
 
   return "ok", 200
+
+def random_uppercase(msg):
+  msg = msg.join(random.choice([c.upper(), c ]) for c in s )
+  return msg
 
 def send_message(msg):
   time.sleep(1) # prevent reply from showing before msg that bot is answering

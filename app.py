@@ -21,7 +21,7 @@ def webhook():
     log('Sending reply')
     msg = random_uppercase(data['text'])
     send_message(msg)
-  else
+  else:
     log('Not sending reply')
 
   return "ok", 200

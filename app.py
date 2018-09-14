@@ -8,6 +8,7 @@ from urllib.request import Request, urlopen
 from flask import Flask, request
 
 app = Flask(__name__)
+botName = 'Mocking SpongeBob'
 
 @app.route('/', methods=['POST'])
 def webhook():
@@ -15,7 +16,7 @@ def webhook():
   log('Recieved {}'.format(data))
 
   # We don't want to reply to ourselves!
-  if data['name'] != 'apnorton-test-bot':
+  if data['name'] != botName:
     msg = '{}, you sent "{}".'.format(data['name'], data['text'])
     send_message(msg)
 
@@ -23,7 +24,6 @@ def webhook():
 
 def send_message(msg):
   url  = 'https://api.groupme.com/v3/bots/post'
-
   data = {
           'bot_id' : os.getenv('GROUPME_BOT_ID'),
           'text'   : msg,

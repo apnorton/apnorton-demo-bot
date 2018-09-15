@@ -16,8 +16,9 @@ botName = 'Mocking SpongeBob'
 def webhook():
   data = request.get_json()
   log('Received {}'.format(data))
+  percent = float(os.getenv('REPLY_CHANCE'));
 
-  if random.random() < 0.1 and data['name'] != botName and data['text'] != '':
+  if random.random() <= percent and data['name'] != botName and data['text'] != '':
     log('Sending reply')
     msg = random_uppercase(data['text'])
     send_message(msg)

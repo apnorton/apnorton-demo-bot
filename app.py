@@ -10,7 +10,7 @@ from urllib.request import Request, urlopen
 from flask import Flask, request
 
 app = Flask(__name__)
-botName = 'Mocking SpongeBob'
+botName = os.getenv('BOT_NAME')
 
 @app.route('/', methods=['POST'])
 def webhook():

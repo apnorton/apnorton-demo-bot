@@ -20,7 +20,7 @@ def webhook():
   targeted_userid = os.getenv('TARGETED_USERID') # if 0, targets everyone
 
   if random.random() <= percent:
-    if data['sender_id'] == targeted_userid or targeted_userid == 0:
+    if data['sender_id'] == targeted_userid or targeted_userid == '0':
       if data['text'] != '':
         log('Sending reply')
         msg = random_uppercase(data['text'])

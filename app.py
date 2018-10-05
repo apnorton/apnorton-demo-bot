@@ -17,9 +17,9 @@ def webhook():
   data = request.get_json()
   log('Received {}'.format(data))
   percent = float(os.getenv('REPLY_CHANCE'))
-  austin_id = os.getenv('AUSTIN_ID')
+  targeted_userid = os.getenv('TARGETED_USERID')
 
-  if random.random() <= percent and data['sender_id'] == austin_id and data['text'] != '':
+  if random.random() <= percent and data['sender_id'] == targeted_userid and data['text'] != '':
     log('Sending reply')
     msg = random_uppercase(data['text'])
     send_message(msg)

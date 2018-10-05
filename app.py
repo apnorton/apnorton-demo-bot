@@ -17,14 +17,20 @@ def webhook():
   data = request.get_json()
   log('Received {}'.format(data))
   percent = float(os.getenv('REPLY_CHANCE'))
-  targeted_userid = os.getenv('TARGETED_USERID')
+  targeted_userid = os.getenv('TARGETED_USERID') # if 0, targets everyone
 
-  if random.random() <= percent and data['sender_id'] == targeted_userid and data['text'] != '':
-    log('Sending reply')
-    msg = random_uppercase(data['text'])
-    send_message(msg)
+  if random.random() <= percent:
+    if data['sender_id'] == targeted_userid or targeted_userid == 0:
+      if data['text'] != '':
+        log('Sending reply')
+        msg = random_uppercase(data['text'])
+        send_message(msg)
+      else:
+        log('Not sending reply - blank message')
+    else:
+      log('Not sending reply - not the targeted user')
   else:
-    log('Not sending reply')
+    log('Not sending reply - chance')
 
   return "ok", 200
 

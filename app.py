@@ -19,19 +19,19 @@ def webhook():
   percent = float(os.getenv('REPLY_CHANCE'))
   targeted_userid = os.getenv('TARGETED_USERID') # if 0, targets everyone
 
-if (data['sender_id'] != botName)
-  if random.random() <= percent:
-    if data['sender_id'] == targeted_userid or (targeted_userid == '0'):
-      if data['text'] != '':
-        log('Sending reply')
-        msg = random_uppercase(data['text'])
-        send_message(msg)
+  if (data['sender_id'] != botName)
+    if random.random() <= percent:
+      if data['sender_id'] == targeted_userid or (targeted_userid == '0'):
+        if data['text'] != '':
+          log('Sending reply')
+          msg = random_uppercase(data['text'])
+          send_message(msg)
+        else:
+          log('Not sending reply - blank message')
       else:
-        log('Not sending reply - blank message')
+        log('Not sending reply - not the targeted user')
     else:
-      log('Not sending reply - not the targeted user')
-  else:
-    log('Not sending reply - chance')
+      log('Not sending reply - chance')
 
 
   return "ok", 200
